@@ -11,6 +11,52 @@ h1 {
 .title {
     margin: 10px 0;
     font-size: 2em;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto; 
+}
+
+.timer {
+    margin: 15px 0;
+    font-size: 2em;
+}
+
+.word-container {
+    background: #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.word-container .word {
+    display: inline-block;
+    background: #fff;
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin-bottom: 5px;
+}
+
+.word:not(:last-child) {
+    margin-right: 5px;
+}
+
+.word-container .word-next {
+    background: #32CD32;
+    color: #fff;
+}
+
+.word-input {
+    margin-top: 20px;
+}
+
+.word-input input {
+    width: calc(100% - 20px);
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 10px;
 }
 
 .text-center {

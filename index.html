@@ -4,12 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
     <title>Typing Game</title>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title text-center">Typing Game</h1>
+    <div id="app" v-cloak>
+        <div class="container">
+            <h1 class="title text-center">Typing Game</h1>
+            <p class="tutorial">
+                Type the words below as fast as you can without making a mistake.
+            </p>
+            <div class="text-center timer">
+                {{ timeleft }}
+            </div>
+            <div class="word-container">
+                <div class="word" v-for="word in words" v-bind:class="{ 'word-next': currentWord == word }">
+                    {{ word }}
+                </div>
+            </div>
+            <div class="word-input">
+                <input type="text" placeholder="Type here">
+            </div>
+        </div>
     </div>
 
     <script src="vue.js"></script>
