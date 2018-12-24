@@ -105,6 +105,7 @@ var app = new Vue({
     data: {
         words: [],
         currentWord: '',
+        wordInput: '',
         secondsLeft: 60,
         mainTimer: null
     },
@@ -124,17 +125,26 @@ var app = new Vue({
             }
             this.currentWord = this.words[0];
         },
+        enterWord: function() {
+            var enteredWord = this.wordInput.trim();
+            console.log('Enter word', enteredWord, enteredWord.length);
+            this.wordInput = '';
+        },
         startTimer: function() {
             if(this.mainTimer != null) return;
             console.log('Starting timer...');
             this.mainTimer = setInterval(this.timerTick, 1000);
         },
         timerTick: function() {
-            console.log('Timer tick');
             this.secondsLeft --;
+
+            if(this.secondsLeft <= 0) {
+                this.stopTimer();
+                console.log('Timer ran out');
+            }
         },
         stopTimer: function() {
-            if(mainTimer != null) {
+            if(this.mainTimer != null) {
                 clearInterval(this.mainTimer);
                 this.mainTimer = null;
             }

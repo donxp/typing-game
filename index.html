@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="word-input">
-                <input type="text" v-on:keyup="startTimer" placeholder="Type here">
+                <input type="text" v-model="wordInput" v-on:keyup.space="enterWord" v-on:keyup="startTimer" placeholder="Type here">
             </div>
         </div>
     </div>
