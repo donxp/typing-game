@@ -1,0 +1,1 @@
+This is a basic web typing game developed using Vue.js.
