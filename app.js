@@ -104,11 +104,13 @@ var app = new Vue({
     el: '#app',
     data: {
         words: [],
-        currentWord: ''
+        currentWord: '',
+        secondsLeft: 60,
+        mainTimer: null
     },
     computed: {
         timeleft: function() {
-            return '1:00';
+            return (this.secondsLeft == 60) ? '1:00' : this.secondsLeft;
         }
     },
     methods: {
@@ -121,6 +123,21 @@ var app = new Vue({
                 }
             }
             this.currentWord = this.words[0];
+        },
+        startTimer: function() {
+            if(this.mainTimer != null) return;
+            console.log('Starting timer...');
+            this.mainTimer = setInterval(this.timerTick, 1000);
+        },
+        timerTick: function() {
+            console.log('Timer tick');
+            this.secondsLeft --;
+        },
+        stopTimer: function() {
+            if(mainTimer != null) {
+                clearInterval(this.mainTimer);
+                this.mainTimer = null;
+            }
         }
     },
     created: function() {
