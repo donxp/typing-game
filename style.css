@@ -62,3 +62,7 @@ h1 {
 .text-center {
     text-align: center;
 }
+
+.game-stats {
+    margin-top: 20px;
+}

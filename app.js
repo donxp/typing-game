@@ -1,4 +1,4 @@
-var words = [ 'polytypes',
+var wordsOld = [ 'polytypes',
     'numb',
     'gumnuts',
     'cries',
@@ -100,6 +100,19 @@ var words = [ 'polytypes',
     'rewatered'
 ];
 
+var words = [
+    'four', 'some', 'may', 'house', 'school',
+    'tree', 'story', 'picture', 'still',
+    'state', 'face', 'follow', 'turn',
+    'made', 'white', 'have', 'want',
+    'would', 'could', 'should', 'said',
+    'only', 'quite', 'miss', 'line',
+    'family', 'people', 'call', 'how',
+    'start', 'them', 'question', 'number',
+    'carry', 'head', 'father', 'mother',
+    'brother', 'chapel', 'watch', 'saw'
+]
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -107,7 +120,11 @@ var app = new Vue({
         currentWord: '',
         wordInput: '',
         secondsLeft: 60,
-        mainTimer: null
+        mainTimer: null,
+        gameStarted: false,
+        correctWords: 0,
+        incorrectWords: 0,
+        wpmSpeed: 0
     },
     computed: {
         timeleft: function() {
@@ -127,20 +144,33 @@ var app = new Vue({
         },
         enterWord: function() {
             var enteredWord = this.wordInput.trim();
-            console.log('Enter word', enteredWord, enteredWord.length);
             this.wordInput = '';
+
+            if(enteredWord == this.currentWord) {
+                console.log('Correct.');
+                var currentWordIndex = this.words.indexOf(this.currentWord);
+                this.currentWord = this.words[currentWordIndex+1];
+                this.correctWords ++;
+            } else {
+                console.log('Incorrect');
+                this.incorrectWords ++;
+            }
         },
         startTimer: function() {
             if(this.mainTimer != null) return;
             console.log('Starting timer...');
             this.mainTimer = setInterval(this.timerTick, 1000);
+            this.gameStarted = true;
         },
         timerTick: function() {
-            this.secondsLeft --;
-
+            var secondsElapsed = 60 - this.secondsLeft;
+            var a = secondsElapsed / 60;
+            this.wpmSpeed = this.correctWords / a;
             if(this.secondsLeft <= 0) {
                 this.stopTimer();
                 console.log('Timer ran out');
+            } else {
+                this.secondsLeft --;
             }
         },
         stopTimer: function() {

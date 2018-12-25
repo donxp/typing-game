@@ -26,6 +26,11 @@
             <div class="word-input">
                 <input type="text" v-model="wordInput" v-on:keyup.space="enterWord" v-on:keyup="startTimer" placeholder="Type here">
             </div>
+            <div v-if="gameStarted" class="game-stats text-center">
+                Correct words:{{ correctWords }}<br>
+                Incorrect words: {{ incorrectWords }}<br>
+                WPM: {{ wpmSpeed }}
+            </div>
         </div>
     </div>
 
